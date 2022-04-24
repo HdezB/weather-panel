@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,26 @@
     <link rel="stylesheet" href="./develop/css/style.css">
     <title>Weather Panel</title>
 </head>
+
 <body>
-    
+    <header>
+        <div class="weather-header">
+            <h1>Weather Dashboard</h1>
+        </div>
+    </header>
+    <main class="flex-row justify-space-between">
+        <div class="col-12 col-md-3 search-container">
+            <h2 class="search-title">Search for a City:</h2>
+            <form id="search-form" class="form-body">
+                <label for="search-city" class="form-label"></label>
+                <input type="text" name="search-city" id="search-city" class="form-input" />
+                <button type="submit" class="btn">Search</button>
+            </form>
+        </div>
+        <div class="col-12 col-md-9 weather-display">
+        </div>
+    </main>
 </body>
 <script src="./develop/js/script.js"></script>
+
 </html>
