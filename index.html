@@ -11,32 +11,33 @@
 
 <body>
     <header>
-        <div class="twelve columns u-text-center">
-            <h1>Weather Dashboard</h1>
+        <div class="twelve columns weather-heading">
+            <h1 style="margin: 0;">Weather Dashboard</h1>
         </div>
     </header>
     <main class="row">
-        <div class="three columns">
+        <div class="md-twelve lg-three columns" style="margin-top: 1rem;">
             <h2>Search for a City:</h2>
-            <form id="search-form" class="form-body">
+            <form id="search-form" class="form-body" style="border-bottom: 1px solid grey;">
                 <label for="search-city" class="form-label"></label>
                 <input type="text" name="search-city" id="search-city" class="u-full-width" />
                 <button type="submit" id="submit-city"
                     class="button-success u-center-block u-full-width">Search</button>
             </form>
         </div>
-        <div class="card nine columns">
+        <div class="card-container md-twelve lg-nine columns">
                 <div class="row">
-                    <div class="twelve columns card">
+                    <div class="twelve columns card" style="border: 1px grey solid;">
                         <h3 id="city"></h3>
                         <h6>Temp: <span id="temp"></span></h6>
                         <h6>Wind: <span id="wind"></span></h6>
                         <h6>Humidity: <span id="humidity"></span></h6>
+                        <h6>UV Index: <span id="uv"></span></h6>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="twelve columns card">
-                        <h3>5-DAY FORECAST</h3>
+                    <div class="twelve columns">
+                        <h3>5-DAY FORECAST:</h3>
                         <div id="forecast-cards" class="row">
 
                         </div>
@@ -47,5 +48,6 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="./develop/js/script.js"></script>
+<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
 </html>

@@ -24,6 +24,7 @@ html {
   *::before,
   *::after {
     box-sizing: inherit;
+
   }
   
   body {
@@ -51,7 +52,11 @@ html {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
-  
+  .weather-heading {
+    color: white;
+    text-align: center;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(188, 233, 88, 1) 0%, rgba(9, 196, 194, 0.9920168751094187) 100%);
+  }
   .row {
     margin-left: -0.5rem;
     margin-right: -0.5rem;
@@ -461,7 +466,7 @@ html {
   h5,
   h6 {
     margin-top: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
     font-weight: 300;
   }
   
@@ -903,6 +908,14 @@ html {
     min-height: 160px;
     margin-bottom: 1rem;
   }
+  .card-container {
+    padding: 15px 25px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px #E1E1E1;
+    min-height: 160px;
+    margin-bottom: 1rem;
+  }
+
   
   .card h1,
   .card h2,
@@ -981,7 +994,11 @@ html {
     color: #FFF;
     background-color: #e74c3c;
   }
-  
+  .alert.alert-warning {
+    border: 1px solid #FFAD69;
+    color: #FFF;
+    background-color: #FFAD69;
+  }
   .table-responsive {
       overflow-x: auto;
   }
