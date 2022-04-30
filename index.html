@@ -11,23 +11,41 @@
 
 <body>
     <header>
-        <div class="weather-header">
+        <div class="twelve columns u-text-center">
             <h1>Weather Dashboard</h1>
         </div>
     </header>
-    <main class="flex-row justify-space-between">
-        <div class="col-12 col-md-3 search-container">
-            <h2 class="search-title">Search for a City:</h2>
+    <main class="row">
+        <div class="three columns">
+            <h2>Search for a City:</h2>
             <form id="search-form" class="form-body">
                 <label for="search-city" class="form-label"></label>
-                <input type="text" name="search-city" id="search-city" class="form-input" />
-                <button type="submit" class="btn">Search</button>
+                <input type="text" name="search-city" id="search-city" class="u-full-width" />
+                <button type="submit" id="submit-city"
+                    class="button-success u-center-block u-full-width">Search</button>
             </form>
         </div>
-        <div class="col-12 col-md-9 weather-display">
+        <div class="card nine columns">
+                <div class="row">
+                    <div class="twelve columns card">
+                        <h3 id="city"></h3>
+                        <h6>Temp: <span id="temp"></span></h6>
+                        <h6>Wind: <span id="wind"></span></h6>
+                        <h6>Humidity: <span id="humidity"></span></h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns card">
+                        <h3>5-DAY FORECAST</h3>
+                        <div id="forecast-cards" class="row">
+
+                        </div>
+                    </div>
+                </div>
         </div>
     </main>
 </body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="./develop/js/script.js"></script>
 
 </html>
