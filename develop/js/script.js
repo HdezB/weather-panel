@@ -93,14 +93,17 @@ function getApi(city) {
 
                     //UV Index for current weather
                     var uvIndex = data.current.uvi
+                    $("#uv").removeClass();
+                    console.log(uvIndex);
                     $("#uv").append(uvIndex)
-                    if (uvIndex <= 2) {
+                    if (uvIndex < 3) {
+                        
                         $("#uv").addClass("alert alert-success")
                     }
                     else if (uvIndex >= 3 && uvIndex <= 5) {
                         $("#uv").addClass("alert alert-warning");
                     }
-                    else {
+                    else if (uvIndex > 5) {
                         $("#uv").addClass("alert alert-danger");
                     }
                     for (var i = 0; i <= forecastDays; i++) {
@@ -132,7 +135,7 @@ function getApi(city) {
 }
 start()
 $("#search-form").on("submit", submitCity)
-$("#searched-cities-list").on("click", function(e) {
+$("#searched-cities-list").on("click", function (e) {
     e.preventDefault();
     var getText = e.target.innerText;
     getApi(getText);
