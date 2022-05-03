@@ -1,20 +1,51 @@
 var forecastDays = 4;
+var savedCities = JSON.parse(localStorage.getItem("citiesArray")) || []
 
-function start(e) {
+function start() {
+    if (savedCities) {
+        if (savedCities.length <= 5) {
+            for (var i = 0; i < savedCities.length; i++) {
+                var listEl = $("<li>").addClass("searched-cities-list-item").text(savedCities[i]);
+                $("#searched-cities-list").prepend(listEl);
+            }
+        }
+        else {
+            for (var i = savedCities.length - 5; i < savedCities.length; i++) {
+                var listEl = $("<li>").addClass("searched-cities-list-item").text(savedCities[i]);
+                $("#searched-cities-list").prepend(listEl);
+            }
+        }
+    }
+    getApi(savedCities[savedCities.length - 1]);
+}
+function submitCity(e) {
     e.preventDefault();
     var cityName = $("#search-city").val();
+
     if (cityName) {
-        console.log(cityName);
+
+        newCities = cityName;
+
+        savedCities.push(newCities);
+        localStorage.setItem("citiesArray", JSON.stringify(savedCities));
+        var listEl = $("<li>").addClass("searched-cities-list-item").text(cityName);
+        $("#searched-cities-list").prepend(listEl);
         getApi(cityName)
     }
     else {
-
+        alert("Please search a city.")
     }
 }
+
 function getApi(city) {
 
     var currentWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=5fe6d59403dd71cf4b6a5f04d6eead16";
+    $("#search-city").val("");
+    $("#uv").empty();
     $("#city").empty();
+    $("#temp").empty();
+    $("#wind").empty();
+    $("#humidity").empty();
     $("#forecast-cards").empty();
     fetch(currentWeatherUrl)
         .then(function (response) {
@@ -24,9 +55,9 @@ function getApi(city) {
             console.log(data)
             var lat = data.coord.lat;
             var lon = data.coord.lon;
-            
+
             //Get current day
-            var currentDay = $("<span>").text(" (" + dayjs().format("MM-DD-YY")+ ")");
+            var currentDay = $("<span>").text(" (" + dayjs().format("MM-DD-YY") + ")");
             //Get City Name
             var locationName = data.name;
 
@@ -64,18 +95,18 @@ function getApi(city) {
                     var uvIndex = data.current.uvi
                     $("#uv").append(uvIndex)
                     if (uvIndex <= 2) {
-                        $("#uv").addClass("alert alert-success")         
+                        $("#uv").addClass("alert alert-success")
                     }
                     else if (uvIndex >= 3 && uvIndex <= 5) {
-                        $("#uv").addClass("alert alert-warning"); 
+                        $("#uv").addClass("alert alert-warning");
                     }
                     else {
                         $("#uv").addClass("alert alert-danger");
                     }
                     for (var i = 0; i <= forecastDays; i++) {
                         var divEl = $("<div>").addClass("three columns");
-                        var cardDiv = $("<div>").addClass("card").css({"background-color": "#8cdf76"});
-                        
+                        var cardDiv = $("<div>").addClass("card").css({ "background-color": "#8cdf76" });
+
                         var increaseDay = i + 1
                         var date = dayjs().add(increaseDay, 'day');
                         var dateForecast = dayjs(date).format("MM-DD-YY");
@@ -99,5 +130,11 @@ function getApi(city) {
                 })
         });
 }
-
-$("#submit-city").on("click", start)
+start()
+$("#search-form").on("submit", submitCity)
+$("#searched-cities-list").on("click", function(e) {
+    e.preventDefault();
+    var getText = e.target.innerText;
+    getApi(getText);
+    console.log(e);
+})
