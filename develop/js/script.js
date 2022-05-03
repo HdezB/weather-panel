@@ -1,6 +1,7 @@
 var forecastDays = 4;
 var savedCities = JSON.parse(localStorage.getItem("citiesArray")) || []
 
+// Start() displays all the previous city searches when the page loads.
 function start() {
     if (savedCities) {
         if (savedCities.length <= 5) {
@@ -18,6 +19,9 @@ function start() {
     }
     getApi(savedCities[savedCities.length - 1]);
 }
+
+//SubmitCity() gets the value of the user input when the search button is clicked, it stores that value in the local storage and calls getApi() with a paramater
+// that has the value of the user Input. 
 function submitCity(e) {
     e.preventDefault();
     var cityName = $("#search-city").val();
@@ -36,6 +40,10 @@ function submitCity(e) {
         alert("Please search a city.")
     }
 }
+
+//getApi() has three server apis, one for the 5 days forecast, another for the current weather and day.js for the current and future days. With the latitude and longitude we can pass does parameters to the forecast api and get the same city.
+//We get all the information including temperature, wind, city name, humidity, UV index, and then display this info on the Html. Using an if statement we can check for the uv index an see if the index is favorabe,
+//moderate or severe.
 
 function getApi(city) {
 
@@ -133,8 +141,12 @@ function getApi(city) {
                 })
         });
 }
+
+
 start()
 $("#search-form").on("submit", submitCity)
+
+// On click each recent search can display that city information once again.
 $("#searched-cities-list").on("click", function (e) {
     e.preventDefault();
     var getText = e.target.innerText;
