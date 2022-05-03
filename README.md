@@ -12,8 +12,7 @@ five days forecast, also it saves previous searches in local storage to display 
 
 ## Website
 https://hdezb.github.io/weather-panel/
-![Deployed weather application](https://user-images.githubusercontent.com/100795164/165016256-37df3e84-279b-4675-be4b-0286e32001c8.PNG)
-
+![Deployed weather application](https://user-images.githubusercontent.com/100795164/166570206-4ec85a27-d846-4ea4-b326-af0b8e7c0037.PNG)
 
 ## Contribution
 Made by Brian Hernandez
